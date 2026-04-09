@@ -7,6 +7,7 @@ In this repo, we have 3 sections
 - `.github/workflows/ci.yaml`
 - `app`
 - `Kubernetes Deployment (Killercoda)`
+- `Bonus Covered`
 
 ## .github/workflows/ci.yaml
 
@@ -63,7 +64,11 @@ Below are the steps performed for creating, containerising and deployment in K8s
 
 <img width="959" height="434" alt="killercoda-ui" src="https://github.com/user-attachments/assets/5bfc9c92-acfd-468c-a315-8342684a131a" />
 
-
 <img width="959" height="187" alt="killercoda-svc" src="https://github.com/user-attachments/assets/756e7895-7a78-4c55-989f-6c61f9bd29a5" />
 
 
+## Bonus Covered
+
+- Create a simple CI/CD pipeline (GitHub Actions, Bitbucket Pipelines, GitLab CI, etc.) to build and publish your container image, and commit the configuration to your solution repo.
+
+- Apply production-hardening best practices to your deployment (e.g. resource limits, health checks)
