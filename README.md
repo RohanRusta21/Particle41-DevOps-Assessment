@@ -6,8 +6,7 @@ In this repo, we have 3 sections
 
 - `.github/workflows/ci.yaml`
 - `app`
-- `terraform`
-
+- `Kubernetes Deployment (Killercoda)`
 
 ## .github/workflows/ci.yaml
 
@@ -23,6 +22,10 @@ Stages used in CI pipeline are below :
 - `Log in to Docker registry (Dockerhub)` : Login into Dockerhub
 - `Scan container image (trivy)` : Scanning the build image for container vulnerability
 - `Push Application Docker Image (Dockerhub)` : Uploading or pushing the image to dockerhub
+
+[Image for Reference]
+
+<img width="953" height="435" alt="pipeline" src="https://github.com/user-attachments/assets/a688bcbf-feaf-4b8d-83f1-90ccb14e33fe" />
 
 
 ## app
@@ -40,17 +43,27 @@ Below are the steps performed for creating, containerising and deployment in K8s
 - `service.yaml` : Service file which helps the deployment/pods to be get exposed in outer world or can be accessible from endpoint.
 - `README.md` : Readme file with proper steps to replicate and execute the same.
 
-## terraform
+[Image for Reference]
+
+<img width="959" height="112" alt="app" src="https://github.com/user-attachments/assets/9a52fa1f-9131-441e-93fa-9980d5e6e487" />
+
+
+## Kubernetes Cluster (Killercoda) 
 
 **Overview**
 
-In this section we are using Terraform configuration to deploy an EKS cluster in AWS Cloud. The infrastructure includes a VPC with 2 public and 2 private subnets, and an EKS cluster deployed to that VPC.
+In this section we are using kubernets manifest files to deploy in kubernetes cluster.
 
 Below are the steps performed for creating, containerising and deployment in K8s cluster.
 
-- `backend.tf` : It configures the Terraform stores its state data which is placed at centralised location.
-- `main.tf` : It configures the modules used for creating EKS its addons , vpc_cni_irsa and vpc components.
-- `providers.tf` : It configures the providers used for accesssing aws and kubernetes.
-- `README.md` : Readme file with proper steps to replicate and execute the same infra.
-- `variables.tf` : It stores and handles all the variables used accross the terraform directory and aws resources.
+- `deployment.yaml` : It manages a set of Pods to run an application workload.
+- `service.yaml` : It provides a stable network endpoint (IP address and DNS name) to access your Pods.
+
+[Image for Reference]
+
+<img width="959" height="434" alt="killercoda-ui" src="https://github.com/user-attachments/assets/5bfc9c92-acfd-468c-a315-8342684a131a" />
+
+
+<img width="959" height="187" alt="killercoda-svc" src="https://github.com/user-attachments/assets/756e7895-7a78-4c55-989f-6c61f9bd29a5" />
+
 
