@@ -1,0 +1,42 @@
+name: Build and Push Docker Image to DockerHub Registry (CI Pipeline)
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+env:
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USER }}
+  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  DOCKERHUB_REPO_NAME: ${{ secrets.DOCKERHUB_REPO_NAME }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Install Trivy (Open Source Container Security Tool)
+        run: |
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.69.2/trivy_0.69.2_Linux-64bit.deb
+          sudo dpkg -i trivy_0.69.2_Linux-64bit.deb
+           
+      - name: Build Application Docker Image 
+        run: |
+          cd app
+          docker build -t "${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO_NAME}:$GITHUB_RUN_NUMBER" .
+          echo "Image successfully build: ${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO_NAME}:${GITHUB_RUN_NUMBER}"
+            
+      - name: Log in to Docker registry
+        run: echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+        
+      - name: Scan container image
+        run: trivy image "${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO_NAME}:$GITHUB_RUN_NUMBER"
+          
+      - name: Push Application Docker Image
+        run: |
+          docker push "${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO_NAME}:$GITHUB_RUN_NUMBER"
+          echo "Image successfully pushed to DockerHub: ${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO_NAME}:${GITHUB_RUN_NUMBER}"

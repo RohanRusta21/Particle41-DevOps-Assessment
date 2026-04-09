@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-time-service-dep
+  labels:
+    app: simple-time-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: simple-time-service
+  template:
+    metadata:
+      labels:
+        app: simple-time-service
+    spec:
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
+      containers:
+        - name: simple-time-service
+          image: docker.io/rohanrustagi18/particle41_assignment:v1
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10    
