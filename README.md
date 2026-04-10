@@ -7,6 +7,7 @@ In this repo, we have 3 sections
 - `.github/workflows/ci.yaml`
 - `app`
 - `Kubernetes Deployment (Killercoda)`
+- `terraform`
 - `Bonus Covered`
 
 ## .github/workflows/ci.yaml
@@ -65,6 +66,20 @@ Below are the steps performed for creating, containerising and deployment in K8s
 <img width="959" height="434" alt="killercoda-ui" src="https://github.com/user-attachments/assets/5bfc9c92-acfd-468c-a315-8342684a131a" />
 
 <img width="959" height="187" alt="killercoda-svc" src="https://github.com/user-attachments/assets/756e7895-7a78-4c55-989f-6c61f9bd29a5" />
+
+## terraform
+
+**Overview**
+
+In this section we are using Terraform configuration to deploy an EKS cluster in AWS Cloud. The infrastructure includes a VPC with 2 public and 2 private subnets, and an EKS cluster deployed to that VPC.
+
+Below are the steps performed for creating, containerising and deployment in K8s cluster.
+
+- `backend.tf` : It configures the Terraform stores its state data which is placed at centralised location.
+- `main.tf` : It configures the modules used for creating EKS its addons , vpc_cni_irsa and vpc components.
+- `providers.tf` : It configures the providers used for accesssing aws and kubernetes.
+- `README.md` : Readme file with proper steps to replicate and execute the same infra.
+- `variables.tf` : It stores and handles all the variables used accross the terraform directory and aws resources.
 
 
 ## Bonus Covered
